@@ -1,0 +1,354 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SlidyCSS - a Pure Css Slider</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+
+	<!-- Scribbler CSS -->
+	<link rel="stylesheet" href="css/scribbler/scribbler-global.css">
+	<link rel="stylesheet" href="css/scribbler/scribbler-doc.css">
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/prism/prism.css">
+	<link rel="stylesheet" href="css/slider.css">
+</head>
+
+<body>
+
+	<div class="doc__bg"></div>
+	<nav class="header">
+		<h1 class="logo">Slidy<span class="logo__thin">CSS</span></h1>
+		<ul class="menu">
+			<div class="menu__item toggle"><span></span></div>
+			<li class="menu__item"><a href="" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+			<li class="menu__item"><a href="https://mirage.ovh/slider/" class="button--primary">Voir la démo</a></li>
+		</ul>
+	</nav>
+	<div class="wrapper">
+		<aside class="doc__nav">
+			<ul>
+				<li class="js-btn">Layout : HTML</li>
+				<li class="js-btn">Layout : CSS</li>
+				<li class="js-btn">Partie 2 : L'interface et les Contrôleurs</li>
+				<li class="js-btn">Partie 2 : L'interface et les Contrôleurs</li>
+			</ul>
+		</aside>
+		<article class="doc__content">
+
+			<section class="js-section">
+				<h2 class="section__title">Layout : HTML</h2>
+
+				<div class="code__block code__block--notabs">
+					<pre class="code code--block">
+						<code class="language-markup">
+							
+							<!-- Conteneur principal -->
+							<div class="slider">
+								
+								<!-- Contrôleurs -->
+								<input class="slider__controller" type="radio" name="slider-controller" id="slide-1" checked="true" />
+								<input class="slider__controller" type="radio" name="slider-controller" id="slide-2" />
+								<input class="slider__controller" type="radio" name="slider-controller" id="slide-3" />
+								<input class="slider__controller" type="radio" name="slider-controller" id="slide-4" />
+								
+								<!-- Conteneur intérieur -->
+								<div class="slider__inner">
+									
+									<!-- Conteneur de l'image -->
+									<figure class="slide">
+										<img class="slide__image slide__image--1" src="assets/image_1.jpg" alt="vue de l'espace">
+										<figcaption class="slide__caption">Image 1</figcaption>
+									</figure>
+
+									<!-- Conteneur de l'image -->
+									<figure class="slide">
+										<img class="slide__image slide__image--2" src="assets/image_2.jpg" alt="vue de l'espace">
+										<figcaption class="slide__caption">Image 2</figcaption>
+									</figure>
+
+									<!-- Conteneur de l'image -->
+									<figure class="slide">
+										<img class="slide__image slide__image--3" src="assets/image_3.jpg" alt="vue de l'espace">
+										<figcaption class="slide__caption">Image 3</figcaption>
+									</figure>
+
+									<!-- Conteneur de l'image -->
+									<figure class="slide">
+										<img class="slide__image slide__image--4" src="assets/image_4.jpg" alt="vue de l'espace">
+										<figcaption class="slide__caption">Image 4</figcaption>
+									</figure>
+
+								</div>
+								
+								<!-- Interface -->
+								<div class="slider__nav">
+									<label class="slider__nav__chevron" for="slide-1"></label>
+									<label class="slider__nav__chevron" for="slide-2"></label>
+									<label class="slider__nav__chevron" for="slide-3"></label>
+									<label class="slider__nav__chevron" for="slide-4"></label>
+								</div>
+
+								<div class="slider__pagination">
+									<label class="slider__pagination__dot" for="slide-1"></label>
+									<label class="slider__pagination__dot" for="slide-2"></label>
+									<label class="slider__pagination__dot" for="slide-3"></label>
+									<label class="slider__pagination__dot" for="slide-4"></label>
+								</div>
+
+							</div>
+
+						</code>
+					</pre>
+				</div>
+
+				<table id="customers">
+					<tr>
+						<th>Element</th>
+						<th>Fonction</th>
+					</tr>
+					<tr>
+						<td>Conteneur principal</td>
+						<td>Le conteneur principal contient l'intégralité des élements de notre slider.</td>
+					</tr>
+					<tr>
+						<td>Contrôleurs</td>
+						<td>En fonction de leurs états (true ou false), les contrôleurs change la position du conteneur intérieur, ils définissent ainsi l'image qui est vu sur la page par les utilisateurs du site.</td>
+					</tr>
+					<tr>
+						<td>Conteneur intérieur</td>
+						<td>Le conteneur interieur contient les images de notre slider, il est piloté par les contrôleurs.</td>
+					</tr>
+					<tr>
+						<td>Conteneur de l'image</td>
+						<td>Le conteneur de l'image contient une image ainsi que sa description.</td>
+					</tr>
+					<tr>
+						<td>Interface</td>
+						<td>L'interface permet de changer l'état des contrôleurs.</td>
+					</tr>
+				</table>
+
+			</section>
+
+			<section class="js-section">
+				<h2 class="section__title">Layout : CSS</h2>
+
+				<script type="text/plain" class="language-css">
+					/* Slider 
+					================================================*/
+					.slider {
+						width: 100%;
+						position: relative;
+						overflow: hidden;
+					}
+
+					/* Slider Controller
+					================================================*/
+					.slider__controller {
+						display: none;
+					}
+
+					/* Slider Inner
+					================================================*/
+					.slider__inner {
+						display: -webkit-box;
+						display: -ms-flexbox;
+						display: flex;
+
+						width: 400%;
+
+						-webkit-transition: -webkit-transform 1s;
+						transition: -webkit-transform 1s;
+						transition: transform 1s;
+						transition: transform 1s, -webkit-transform 1s;
+					}
+
+					/* Slide
+					================================================*/
+					.slide {
+						position: relative;
+						width: 25%;
+						margin: 0;
+					}
+
+					.slide__image {
+						display: block;
+						width: 100%;
+						height: auto;
+					}
+
+					.slide__caption {
+						position: absolute;
+						z-index: 20;
+						top: 50%;
+						left: 50%;
+						font-size: 3vw;
+						color: #F8F9FA;
+						transform: translate(-50%, -50%);
+					}
+
+					/* Slider Nav
+					================================================*/
+					.slider__nav {
+						position: absolute;
+						z-index: 10;
+						top: 50%;
+						left: 0;
+						width: 100%;
+						height: 80px;
+						transform: translateY(-50%);
+					}
+
+					.slider__nav__chevron {
+						display: none;
+						width: 40px;
+						height: 100%;
+						background-color: rgba(248, 249, 250, 0.6);
+						cursor: pointer;
+					}
+
+					/* Slider Pagination
+					================================================*/
+					.slider__pagination {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						position: absolute;
+						z-index: 10;
+						bottom: 0;
+						left: 50%;
+						width: 150px;
+						height: 50px;
+						transform: translateX(-50%);
+					}
+
+					.slider__pagination__dot {
+						width: 20px;
+						height: 20px;
+						border-radius: 50%;
+						background-color: #F8F9FA;
+						cursor: pointer;
+						box-sizing: border-box;
+					}
+
+					/* Slider Inner Animation
+					================================================*/
+					#slide-1:checked ~ .slider__inner {transform: translateX(0);}
+					#slide-2:checked ~ .slider__inner {transform: translateX(-25%);}
+					#slide-3:checked ~ .slider__inner {transform: translateX(-50%);}
+					#slide-4:checked ~ .slider__inner {transform: translateX(-75%);}
+
+					/* Slider Nav Animation
+					================================================*/
+					#slide-1:checked ~ .slider__nav > .slider__nav__chevron:nth-child(4),
+					#slide-2:checked ~ .slider__nav > .slider__nav__chevron:nth-child(1),
+					#slide-3:checked ~ .slider__nav > .slider__nav__chevron:nth-child(2),
+					#slide-4:checked ~ .slider__nav > .slider__nav__chevron:nth-child(3) {
+						display: block;
+						float: left;
+						border-top-right-radius: 80px;
+						border-bottom-right-radius: 80px;
+						background-image: url("assets/chevron-left.svg");
+						background-repeat: no-repeat;
+						background-position:right;
+						background-size: 125%,125%;
+					}
+
+					#slide-1:checked ~ .slider__nav > .slider__nav__chevron:nth-child(2),
+					#slide-2:checked ~ .slider__nav > .slider__nav__chevron:nth-child(3),
+					#slide-3:checked ~ .slider__nav > .slider__nav__chevron:nth-child(4),
+					#slide-4:checked ~ .slider__nav > .slider__nav__chevron:nth-child(1) {
+						display: block;
+						float: right;
+						border-top-left-radius: 80px;
+						border-bottom-left-radius: 80px;
+						background-image: url("assets/chevron-right.svg");
+						background-repeat: no-repeat;
+						background-position:left;
+						background-size: 125%,125%;
+					}
+
+					/* Slider Pagination Animation
+					================================================*/
+					#slide-1:checked ~ .slider__pagination > .slider__pagination__dot:nth-child(1),
+					#slide-2:checked ~ .slider__pagination > .slider__pagination__dot:nth-child(2),
+					#slide-3:checked ~ .slider__pagination > .slider__pagination__dot:nth-child(3),
+					#slide-4:checked ~ .slider__pagination > .slider__pagination__dot:nth-child(4) {
+						background-color: #343A40;
+						border: 5px solid #F8F9FA;
+					}
+				</script>
+
+			</section>
+
+			<section class="js-section">
+				<h2 class="section__title">Partie 2 : L'interface et les controleurs</h2>
+				<p>L'interface du slider contient les éléments qui vous permette de controler le slider, Elle utilise un systeme qui se sert d'inputs et de labels</p>
+				
+				<h3 class="section__title">Fonctionnement d'une input avec le type "radio"</h3>
+				<p>Vous le savez certainement, vous pouvez dans vos formulaires utiliser des inputs de type radio, pour forcer vos utilisateurs à ne choisir qu'une option parmis plusieurs choix</p>
+
+				<div class="code__block code__block--notabs">
+					<pre class="code code--block">
+						<code class="language-markup">
+							
+							<form action="">
+								<label for="bleu">bleu</label>
+								<input id="bleu" type="radio" name="choix-unique" checked="true" />
+								<label for="rouge">rouge</label>
+								<input id="rouge" type="radio" name="choix-unique" />
+								<label for="vert">vert</label>
+								<input id="vert" type="radio" name="choix-unique" />
+								<label for="jaune">jaune</label>
+								<input id="jaune" type="radio" name="choix-unique" />
+							</form>
+
+						</code>
+					</pre>
+				</div>
+				
+				<p>Si vous cliquez sur une option, celle qui était précedemment séléctionner se déselectionne, l'option sur lequel vous avez cliquez devient alors le choix actif. Vous pouvez vérifier cette explication ci-dessous.</p>
+				
+				<form action="">
+					<label for="bleu">bleu</label>
+					<input id="bleu" type="radio" name="choix-unique" checked="true" />
+					<label for="rouge">rouge</label>
+					<input id="rouge" type="radio" name="choix-unique" />
+					<label for="vert">vert</label>
+					<input id="vert" type="radio" name="choix-unique" />
+					<label for="jaune">jaune</label>
+					<input id="jaune" type="radio" name="choix-unique" />
+				</form>
+
+				<h3 class="section__title">La relation input/label</h3>
+				<p>Cela est interessant mais pour notre module, rien de vraiment utilisable à moins que ... Que ce passe t'il si nous cliquons sur un label au lieu de l'input(pastille) en elle meme.</p>
+
+				<p>Vous l'aurez compris, lorsque vous cliquez sur un label, l'input qui lui est associé s'active. Mais il y'a deux chose qui nous interesse plus particulierement :</p>
+
+				<ul>
+					<li>Vous pouvez avoir plusieurs labels qui activent la meme input</li>
+					<li>Vos labels peuvent ce trouvé n'importe ou dans votre fichier</li>
+				</ul>
+
+			</section>
+
+		</article>
+	</div>
+
+	<footer class="footer">Made with Scribbler</footer>
+
+	<!-- Highlight.js JS -->
+	<script src="js/prism.js"></script>
+
+	<!-- Scribbler JS -->
+	<script src="js/scribbler.js"></script>
+</body>
+</html>
